@@ -10,7 +10,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="flex items-center justify-center w-full h-full text-4xl font-bold">
-        Hello logesh
+        Hello logesh its working
       </div>
     </div>
   );
