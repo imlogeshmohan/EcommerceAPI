@@ -1,0 +1,74 @@
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+.no-scrollbar
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+        display: none
+.styled-scrollbar
+    &::-webkit-scrollbar
+        width: 10px
+    &::-webkit-scrollbar-track
+        background: #f1f1f1
+    &::-webkit-scrollbar-thumb
+        background: #ff58a9
+        border-radius: 10px
+        &:hover
+            background: #FF007A
+
+@layer base
+    body
+        @apply dark:bg-gray-900 dark:text-white bg-gray-50 text-gray-900
+
+.swiper-button-next
+    display: absolute
+    top: 70%
+    margin: -13px
+    padding: 15px
+    width: 256px
+    height: 256px
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNjQiIGhlaWdodD0iNjQiCnZpZXdCb3g9IjAgMCA2NCA2NCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBkPSJNNDYuNjA0IDI5Ljk1M0wyMS4wNTEgNC4wMzYgMTguMTI3IDYuNzY0IDQwLjQxIDMyIDE4LjEyNyA1Ny4yMzUgMjEuMDUxIDU5Ljk2NCA0Ni42MDQgMzQuMDQ3IDQ4LjYyMiAzMnoiPjwvcGF0aD48L3N2Zz4=') 50% 50% no-repeat
+    background-size: 100%
+    &::after
+        display: none
+
+.swiper-button-prev
+    display: absolute
+    top: 70%
+    margin: -13px
+    padding: 15px
+    width: 100px
+    height: 100px
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNjQiIGhlaWdodD0iNjQiCnZpZXdCb3g9IjAgMCA2NCA2NCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBkPSJNNDYuNjA0IDI5Ljk1M0wyMS4wNTEgNC4wMzYgMTguMTI3IDYuNzY0IDQwLjQxIDMyIDE4LjEyNyA1Ny4yMzUgMjEuMDUxIDU5Ljk2NCA0Ni42MDQgMzQuMDQ3IDQ4LjYyMiAzMnoiPjwvcGF0aD48L3N2Zz4=') 50% 50% no-repeat
+    background-size: 100%
+    transform: rotate(180deg)
+    &::after
+        display: none
+
+@media (min-width: 767px)
+    .swiper-button-next
+        display: absolute
+        top: 70%
+        margin: -23px
+        padding: 25px
+        width: 256px
+        height: 256px
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNjQiIGhlaWdodD0iNjQiCnZpZXdCb3g9IjAgMCA2NCA2NCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBkPSJNNDYuNjA0IDI5Ljk1M0wyMS4wNTEgNC4wMzYgMTguMTI3IDYuNzY0IDQwLjQxIDMyIDE4LjEyNyA1Ny4yMzUgMjEuMDUxIDU5Ljk2NCA0Ni42MDQgMzQuMDQ3IDQ4LjYyMiAzMnoiPjwvcGF0aD48L3N2Zz4=') 50% 50% no-repeat
+        background-size: 100%
+        &::after
+            display: none
+
+    .swiper-button-prev
+        display: absolute
+        top: 70%
+        margin: -23px
+        padding: 25px
+        width: 100px
+        height: 100px
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNjQiIGhlaWdodD0iNjQiCnZpZXdCb3g9IjAgMCA2NCA2NCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBkPSJNNDYuNjA0IDI5Ljk1M0wyMS4wNTEgNC4wMzYgMTguMTI3IDYuNzY0IDQwLjQxIDMyIDE4LjEyNyA1Ny4yMzUgMjEuMDUxIDU5Ljk2NCA0Ni42MDQgMzQuMDQ3IDQ4LjYyMiAzMnoiPjwvcGF0aD48L3N2Zz4=') 50% 50% no-repeat
+        background-size: 100%
+        transform: rotate(180deg)
+        &::after
+            display: none
