@@ -5,10 +5,10 @@ function PostCard({ post }) {
   // console.log(post)
   return (
     <Link className="" href={`/blog/post/${post.slug}`}>
-      <div className="sm:m-6 h-[510px] sm:w-96 w-full  cursor-pointer relative  shadow-xl  overflow-hidden rounded-xl">
-        <div className="relative w-full h-56 ">
+      <div className="sm:m-6 h-[510px] sm:w-96 w-full  cursor-pointer relative  shadow-xl  overflow-hidden rounded-xl dark:bg-[#1e1e1e]">
+        <div className="relative w-full h-56  ">
           <Image
-            className="rounded-t-xl h-60"
+            className="rounded-t-xl h-60 hover:scale-125 scale-100 transition-all duration-500 ease-in-out transform"
             src={
               post.featuredImage
                 ? post.featuredImage.url || blankImage

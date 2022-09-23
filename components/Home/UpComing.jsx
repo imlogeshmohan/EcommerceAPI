@@ -22,19 +22,18 @@ function UpComing() {
               key={i}
             >
               {post.image.url && (
-                <div className="sm:w-32 w-[40%] rounded-2xl">
-                  <div className="w-full h-24 relative">
-                    <Image
-                      alt={post.title}
-                      className="rounded-xl"
-                      blurDataURL={post.image.url}
-                      placeholder="blur"
-                      layout="fill"
-                      src={post.image.url}
-                      objectFit="cover"
-                    />
-                  </div>
+                <div className="w-[100px] h-[100px] rounded-2xl relative">
+                  <Image
+                    alt={post.title}
+                    className="rounded-xl"
+                    blurDataURL={post.image.url}
+                    placeholder="blur"
+                    layout="fill"
+                    src={post.image.url}
+                    objectFit="cover"
+                  />
                 </div>
+                // <div className="h-48 w-[40%] rounded-2xl bg-white"></div>
               )}
               <div className="lg:text-2xl text-xl font-semibold pt-5">
                 {post.title || ''}

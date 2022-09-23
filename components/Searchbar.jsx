@@ -118,7 +118,7 @@ function NewSearch() {
   return (
     <div
       ref={parentRef}
-      className={`absolute dark:text-gray-900 dark:font-semibold z-50 flex z-100 w-full flex-col shadow-lg rounded-xl bg-white  transition-all duration-300 ease-in-out transform  ${
+      className={`absolute dark:font-semibold z-50 flex z-100 w-full flex-col shadow-lg rounded-xl bg-white dark:bg-[#2b2b2b]  transition-all duration-300 ease-in-out transform dark:text-gray-50 ${
         IsExpanded
           ? 'h-96  overflow-auto styled-scrollbar'
           : 'h-14 overflow-hidden'
@@ -139,7 +139,7 @@ function NewSearch() {
           }}
           ref={inputRef}
           placeholder="Search"
-          className="w-60 h-12 rounded-xl focus:outline-none text-gray-900 bg-white"
+          className="w-60 h-12 rounded-xl focus:outline-none text-gray-900 bg-white dark:bg-[#2b2b2b]  dark:text-gray-50 "
         />
         {/* search closing svg */}
         <svg
@@ -188,9 +188,13 @@ function NewSearch() {
               <div key={result.slug}>
                 <Link href={`/blog/post/${result.slug}`}>
                   <div
-                    className={`cursor-pointer py-3 border-black  px-4 pl-6 ${
+                    className={`cursor-pointer py-3 border-black dark:border-l-gray-50 px-4 pl-6 ${
                       i === cursor ? 'border-l-4 pl-8' : ''
-                    } ${Hover ? 'hover:border-l-4 hover:pl-8' : 'hover:'}`}
+                    } ${
+                      Hover
+                        ? 'hover:border-l-4 hover:pl-8 dark:hover:border-l-gray-50'
+                        : 'hover:'
+                    }`}
                     onClick={collapseContainer}
                   >
                     <div className="text-sm">{result.title}</div>

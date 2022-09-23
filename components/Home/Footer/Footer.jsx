@@ -38,7 +38,7 @@ function Footer({ trending }) {
     });
   }, []);
   return (
-    <div className="bg-black text-gray-300 font-semibold sm:p-10 sm:pt-20 pt-10 p-5">
+    <div className="bg-[#1e1e1e] text-gray-300 font-semibold sm:p-10 sm:pt-20 pt-10 p-5">
       <div className="flex flex-col items-center gap-6">
         <h1 className="sm:text-lg text-sm">{StayQuort}</h1>
         <Subscribe />

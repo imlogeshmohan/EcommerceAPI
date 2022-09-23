@@ -5,12 +5,11 @@ import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import HeadBG from '../public/background.png';
-import { getCategoriesRecentPosts, getTrendingFooter } from '../services';
+import { getCategoriesRecentPosts } from '../services';
 import RecentPost from '../components/Home/RecentSection/RecentPost';
 // import ThemeToggle from '../components/Header/ThemeToggle';
 
-// import NEwFooter from "../../components/Blog/Footer/NEwFooter"
-const NewSearch = dynamic(() => import('../components/Searchbar'), {
+const Searchbar = dynamic(() => import('../components/Searchbar'), {
   suspense: true,
 });
 const UpComing = dynamic(() => import('../components/Home/UpComing'), {
@@ -19,7 +18,6 @@ const UpComing = dynamic(() => import('../components/Home/UpComing'), {
 const Footer = dynamic(() => import('../components/Home/Footer/Footer'), {
   suspense: true,
 });
-
 const Categories = dynamic(
   () => import('../components/Home/CategorySection/Categories'),
   {
@@ -33,17 +31,24 @@ const headSubTitle =
 // eslint-disable-next-line @next/next/no-typos
 export async function getServerSideProps() {
   const posts = (await getCategoriesRecentPosts()) || [];
-  // const trending = (await getTrendingFooter()) || [];
   return {
     props: { posts },
   };
 }
+
 function index({ posts }) {
   const [windowSize, setWindowSize] = useState({ width: 0 });
-  const [Slides, setSlides] = useState(1);
-  const [SlidesSpace, setSlidesSpace] = useState(10);
+  const [Slides, setSlides] = useState(0);
+  const [SlidesSpace, setSlidesSpace] = useState(0);
+  const [Posts, setPosts] = useState([]);
 
-  console.log('posts', posts);
+  useEffect(() => {
+    async function date() {
+      const data = (await getCategoriesRecentPosts()) || [];
+      setPosts(data);
+    }
+    date();
+  }, []);
 
   function handleResize() {
     if (windowSize.width !== window.innerWidth) {
@@ -81,7 +86,7 @@ function index({ posts }) {
         />
       </Head>
       <div className="absolute right-10 top-10">{/* <ThemeToggle /> */}</div>
-      <div className=" lg:w-[1000px] w-full absolute top-0 left-0 h-[350px] -z-10 ">
+      <div className=" lg:w-[1000px] w-full absolute top-0 left-0 h-[350px] -z-10 dark:hidden">
         <Image
           src={HeadBG}
           layout="fill"
@@ -102,8 +107,12 @@ function index({ posts }) {
         <h2 className="sm:text-xl ">{headSubTitle}</h2>
         <div className="flex justify-center px-2 mt-5 h-14 -mb-5 text-left">
           <div className="relative w-[500px]">
-            <Suspense fallback={<div>Loading..</div>}>
-              <NewSearch />
+            <Suspense
+              fallback={
+                <div className=" w-[500px] h-14 rounded-lg animate-pulse bg-slate-400"></div>
+              }
+            >
+              <Searchbar />
             </Suspense>
           </div>
         </div>
@@ -140,8 +149,7 @@ function index({ posts }) {
 
       <Suspense fallback={<div>Loading...</div>}>
         <UpComing />
-        {/* <Footer trending={trending} /> */}
-        {/* <NEwFooter trending = {trending}/> */}
+        <Footer trending={posts.postsConnection.edges.map((i) => i)} />
       </Suspense>
     </div>
   );
