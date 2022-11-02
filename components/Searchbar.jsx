@@ -76,6 +76,7 @@ function NewSearch() {
 
     let listItems = Array.from(searchResultRef.current.children);
     listItems[cursor] && scrollIntoView(listItems[cursor].offsetTop);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursor]);
 
   const keyHandler = (e) => {

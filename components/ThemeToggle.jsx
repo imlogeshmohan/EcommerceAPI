@@ -2,7 +2,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { moon, sun } from './Assets/ThemeToggle';
 
-function ThemeToggle(width = 30) {
+function ThemeToggle() {
   const { systemTheme, theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -23,7 +23,7 @@ function ThemeToggle(width = 30) {
             setTheme('light');
           }}
         >
-          <svg width={30} height={30} className="fill-white">
+          <svg width={30} height={30}>
             {sun}
           </svg>
         </button>
@@ -37,7 +37,7 @@ function ThemeToggle(width = 30) {
             setTheme('dark');
           }}
         >
-          <svg width={30} height={30}>
+          <svg width={30} height={30} className="fill-white">
             {moon}
           </svg>
         </button>

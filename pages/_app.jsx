@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { ThemeProvider } from 'next-themes';
 import { useEffect } from 'react';
+import ThemeToggle from '../components/ThemeToggle';
 
 NProgress.configure({ showSpinner: false });
 
@@ -33,6 +34,9 @@ function MyApp({ Component, pageProps }) {
   }, [router]);
   return (
     <ThemeProvider attribute="class">
+      <div className="fixed z-50 right-5 bottom-5 rounded-full dark:bg-white bg-[#1B1C1E] drop-shadow-2xl">
+        <ThemeToggle />
+      </div>
       <Component {...pageProps} />
     </ThemeProvider>
   );

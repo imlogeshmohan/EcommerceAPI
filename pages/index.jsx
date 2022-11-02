@@ -97,9 +97,7 @@ function index({ posts }) {
           content="Jusqu has worldclass blogs for you "
         />
       </Head>
-      <div className="absolute right-10 top-10">
-        <ThemeToggle />
-      </div>
+
       <div className=" lg:w-[1000px] w-full absolute top-0 left-0 h-[350px] -z-10 dark:hidden">
         <Image
           src={HeadBG}
