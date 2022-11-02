@@ -5,8 +5,9 @@ import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import HeadBG from '../public/background.png';
-import { getCategoriesRecentPosts } from '../services';
+import { getCategoriesRecentPosts, getTrendingFooter } from '../services';
 import RecentPost from '../components/Home/RecentSection/RecentPost';
+import useSWR from 'swr';
 // import ThemeToggle from '../components/Header/ThemeToggle';
 
 const Searchbar = dynamic(() => import('../components/Searchbar'), {
@@ -40,15 +41,19 @@ function index({ posts }) {
   const [windowSize, setWindowSize] = useState({ width: 0 });
   const [Slides, setSlides] = useState(0);
   const [SlidesSpace, setSlidesSpace] = useState(0);
-  const [Posts, setPosts] = useState([]);
+  const [trending, setTrending] = useState([]);
 
-  useEffect(() => {
-    async function date() {
-      const data = (await getCategoriesRecentPosts()) || [];
-      setPosts(data);
-    }
-    date();
-  }, []);
+  const feacher = async () => {
+    getTrendingFooter().then((newUpComing) => {
+      setTrending(newUpComing);
+    });
+  };
+
+  const Trending = () => {
+    const { data, error } = useSWR('trending', feacher);
+    if (error) return <div>failed to load</div>;
+    if (trending.length === 0) return <div>loading...</div>;
+  };
 
   function handleResize() {
     if (windowSize.width !== window.innerWidth) {
@@ -119,7 +124,7 @@ function index({ posts }) {
       </div>
       <div className="lg:w-[90%] w-full h-14 items-center bg-[#FF007A] shadow-[#FF007A] my-10 sm:px-12 rounded-xl mx-auto shadow-2xl text-white lg:text-xl drop-shadow-2xl flex justify-evenly sm:justify-between gap-2 sm:gap-5">
         {posts.categories.map((category) => (
-          <Link key={category.slug} href={`/blog/category/${category.slug}`}>
+          <Link key={category.slug} href={`/category/${category.slug}`}>
             <span className="cursor-pointer text-xs sm:text-sm md:text-lg lg:hover:text-2xl font-bold">
               {category.name}
             </span>
@@ -149,7 +154,8 @@ function index({ posts }) {
 
       <Suspense fallback={<div>Loading...</div>}>
         <UpComing />
-        <Footer trending={posts.postsConnection.edges.map((i) => i)} />
+        {Trending()}
+        <Footer trending={trending?.map((i) => i)} />
       </Suspense>
     </div>
   );

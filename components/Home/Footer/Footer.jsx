@@ -52,7 +52,7 @@ function Footer({ trending }) {
       <div className="">
         <h1 className="sm:text-2xl text-lg py-5">CATEGORIES</h1>
         {categories.map((category, i) => (
-          <Link href={`/blog/category/${category.slug}`} key={category.slug}>
+          <Link href={`/category/${category.slug}`} key={category.slug}>
             <span
               className={`cursor-pointer px-5 text-sm lg:hover:text-gray-50 hover:font-semibold ${
                 i === categories.length - 1 ? 'border-r-0' : 'border-r-2'
@@ -68,7 +68,7 @@ function Footer({ trending }) {
         </h1>
         <div className="flex flex-wrap gap-3">
           {trending.map((trend, i) => (
-            <Link href={`/blog/post/${trend.node.slug}`} key={trend.node.slug}>
+            <Link href={`/post/${trend.node.slug}`} key={trend.node.slug}>
               <span
                 className={`cursor-pointer px-5 text-sm lg:hover:text-gray-50 hover:font-semibold ${
                   i === trending.length - 1 ? 'border-r-0' : 'border-r-2'

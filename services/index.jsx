@@ -26,14 +26,6 @@ export const getCategoriesRecentPosts = async () => {
         title
         slug
       }
-      postsConnection(where: { likes_gt: 0 }, orderBy: likes_DESC, first: 5) {
-        edges {
-          node {
-            slug
-            title
-          }
-        }
-      }
     }
   `;
 

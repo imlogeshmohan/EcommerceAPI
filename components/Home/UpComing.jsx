@@ -1,21 +1,30 @@
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useSWR from 'swr';
 import { getUpComingPost } from '../../services';
 
 function UpComing() {
   const [upComing, setupComing] = useState([]);
 
-  useEffect(() => {
+  const feacher = async () => {
     getUpComingPost().then((newUpComing) => {
       setupComing(newUpComing);
     });
-  }, []);
-  // console.log("Upcoming Loaded")
+  };
+
+  const UpComingDataFeach = () => {
+    const { _data, error } = useSWR('upcoming', feacher);
+
+    if (error) return <div>failed to load</div>;
+    if (upComing === []) return <div>loading...</div>;
+  };
+
   return (
     <div className="sm:p-5 p-3">
       <h1 className="lg:text-6xl font-semibold text-4xl">Upcoming Post</h1>
       <div className="md:flex md:flex-wrap justify-center py-10 lg:px-10 gap-5">
-        {upComing.map((post, i) => {
+        {UpComingDataFeach()}
+        {upComing?.map((post, i) => {
           return (
             <div
               className="flex md:w-2/5 gap-5 my-3 lg:items-start items-center"
