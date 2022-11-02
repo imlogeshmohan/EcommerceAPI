@@ -16,7 +16,7 @@ function CategoriesMenu() {
         DISCOVER MORE OF WHAT MATTERS TO YOU
       </h3>
       <div className="flex text-sm gap-5 flex-wrap border-b pb-10">
-        <Link href={'/blog'}>
+        <Link href={'/'}>
           <button
             className={`cursor-pointer hover:text-white hover:bg-black dark:hover:bg-white dark:hover:text-black dark:font-semibold border-2 py-3 px-4`}
           >

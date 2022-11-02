@@ -4,7 +4,6 @@ import CategoriesPostCard from './CategoriesPostCard';
 import { getCategoryLoadMore } from '../../services';
 import { Waypoint } from 'react-waypoint';
 import { useEffect } from 'react';
-import Link from 'next/link';
 function CategoryPostBlock({ posts }) {
   const [cursorId, setcursorId] = useState('');
   const [Post, setPost] = useState('');

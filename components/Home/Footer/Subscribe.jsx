@@ -7,7 +7,7 @@ function Subscribe() {
   const [errorMsg, setErrorMsg] = useState(null);
   const [ShowElement, setShowElement] = useState(null);
 
-  const subscribe = async (e) => {
+  const subscribe = async (_e) => {
     setState('Loading');
 
     try {

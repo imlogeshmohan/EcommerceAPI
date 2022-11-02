@@ -16,7 +16,7 @@ const Categories = ({ details, sliderspace, slider }) => {
         <h1 className="sm:text-4xl text-2xl lg:text-6xl">
           {details.name || ''}
         </h1>
-        <Link href={`/blog/category/${details.slug}`} className="text-blue-600">
+        <Link href={`/category/${details.slug}`} className="text-blue-600">
           view all
         </Link>
       </div>

@@ -13,8 +13,8 @@ function UpComing() {
   };
 
   const UpComingDataFeach = () => {
+    // eslint-disable-next-line no-unused-vars
     const { _data, error } = useSWR('upcoming', feacher);
-
     if (error) return <div>failed to load</div>;
     if (upComing === []) return <div>loading...</div>;
   };

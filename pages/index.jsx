@@ -9,6 +9,7 @@ import { getCategoriesRecentPosts, getTrendingFooter } from '../services';
 import RecentPost from '../components/Home/RecentSection/RecentPost';
 import useSWR from 'swr';
 // import ThemeToggle from '../components/Header/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 
 const Searchbar = dynamic(() => import('../components/Searchbar'), {
   suspense: true,
@@ -29,8 +30,12 @@ const Categories = dynamic(
 const headSubTitle =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus ultrices sit urna diam donec nisi. Scelerisque parturient mi sed pellentesque. Quam tellus semper dolor in pellentesque quisque vitae, dolor';
 
-// eslint-disable-next-line @next/next/no-typos
-export async function getServerSideProps() {
+// eslint-disable-next-line @next/next/no-typos, no-unused-vars
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  );
   const posts = (await getCategoriesRecentPosts()) || [];
   return {
     props: { posts },
@@ -50,6 +55,7 @@ function index({ posts }) {
   };
 
   const Trending = () => {
+    // eslint-disable-next-line no-unused-vars
     const { data, error } = useSWR('trending', feacher);
     if (error) return <div>failed to load</div>;
     if (trending.length === 0) return <div>loading...</div>;
@@ -80,6 +86,7 @@ function index({ posts }) {
       handleResize();
       return () => window.removeEventListener('resize', handleResize);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowSize]);
   return (
     <div className="relative w-full">
@@ -90,7 +97,9 @@ function index({ posts }) {
           content="Jusqu has worldclass blogs for you "
         />
       </Head>
-      <div className="absolute right-10 top-10">{/* <ThemeToggle /> */}</div>
+      <div className="absolute right-10 top-10">
+        <ThemeToggle />
+      </div>
       <div className=" lg:w-[1000px] w-full absolute top-0 left-0 h-[350px] -z-10 dark:hidden">
         <Image
           src={HeadBG}
