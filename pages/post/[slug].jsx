@@ -3,8 +3,6 @@
 
 import { Suspense, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { useClickOutside } from 'react-click-outside-hook';
 import { getPostDetails, getTrendingPost } from '../../services';
 import ErrorComp from '../../components/404';
 import Blog from '../../components/PostPage/Blog';
@@ -15,9 +13,6 @@ function PostPage({ post }) {
   if (post === null) {
     return <ErrorComp />;
   }
-  const [open, setOpen] = useState(false);
-  const [shareOpen, setShareOpen] = useState(false);
-  const [ShareRef, isClickedOutsideMenu] = useClickOutside();
   const [Trendingblog, setTrendingblog] = useState([]);
 
   useEffect(() => {
@@ -37,7 +32,6 @@ function PostPage({ post }) {
   const ShareButton = dynamic(
     () => import('../../components/PostPage/ShareButton'),
     {
-      ssr: false,
       suspense: true,
     }
   );

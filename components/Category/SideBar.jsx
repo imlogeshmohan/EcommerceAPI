@@ -1,4 +1,4 @@
-import NewSearch from '../Searchbar';
+import Searchbar from '../Searchbar';
 import CategoriesMenu from '../SidebarComp/CategoriesMenu';
 import ServicesMenu from '../SidebarComp/ServicesMenu';
 // import ThemeToggle from '../../Header/ThemeToggle';
@@ -8,7 +8,7 @@ const SideBar = () => {
     <div className=" rounded-lg lg:p-5 pb-12 mb-8">
       {/* <ThemeToggle /> */}
       <div className="h-28 pt-5 sm:w-80">
-        <NewSearch />
+        <Searchbar />
       </div>
       <CategoriesMenu />
       <div className="hidden lg:block">

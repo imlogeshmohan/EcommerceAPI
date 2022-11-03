@@ -89,7 +89,7 @@ function Searchbar() {
       if (cursor < searchResult.length - 1) setCursor(cursor + 1);
       e.preventDefault();
     } else if (e.key === 'Enter') {
-      window.location.href = `/blog/post/${searchResult[cursor].slug}`;
+      window.location.href = `/post/${searchResult[cursor].slug}`;
       collapseContainer();
     } else if (e.key === 'Escape') {
       collapseContainer();
@@ -187,7 +187,7 @@ function Searchbar() {
           searchResult.map((result, i) => {
             return (
               <div key={result.slug}>
-                <Link href={`/blog/post/${result.slug}`}>
+                <Link href={`/post/${result.slug}`}>
                   <div
                     className={`cursor-pointer py-3 border-black dark:border-l-gray-50 px-4 pl-6 ${
                       i === cursor ? 'border-l-4 pl-8' : ''

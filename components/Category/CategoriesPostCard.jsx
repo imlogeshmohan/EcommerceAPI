@@ -16,7 +16,7 @@ function CategoriesPostCard({ post }) {
     <Link
       href={`http://${
         domain === 'localhost' ? 'localhost:3000' : domain
-      }/blog/post/${post.slug}`}
+      }/post/${post.slug}`}
     >
       <div className="flex sm:max-h-52 overflow-hidden items-center justify-between max-w-[800px] cursor-pointer">
         <div className="sm:w-[80%] w-full">
