@@ -4,7 +4,7 @@ import blankImage from '../../../public/blankImag.png';
 function PostCard({ post }) {
   // console.log(post)
   return (
-    <Link className="" href={`/blog/post/${post.slug}`}>
+    <Link className="" href={`/post/${post.slug}`}>
       <div className="sm:m-6 h-[510px] sm:w-96 w-full  cursor-pointer relative  shadow-xl  overflow-hidden rounded-xl dark:bg-[#1e1e1e]">
         <div className="relative w-full h-56  ">
           <Image

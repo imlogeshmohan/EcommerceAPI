@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import moment from 'moment';
 import Link from 'next/link';
 
-function NewSearch() {
+function Searchbar() {
   const [parentRef, isClickedOutside] = useClickOutside();
   const [IsExpanded, setExpanded] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -215,4 +215,4 @@ function NewSearch() {
   );
 }
 
-export default NewSearch;
+export default Searchbar;

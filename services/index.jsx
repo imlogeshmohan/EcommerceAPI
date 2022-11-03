@@ -358,3 +358,43 @@ export const getSearchPost = async (title) => {
 
   return result.postsConnection.edges;
 };
+
+export const getSitemapAllPosts = async () => {
+  const query = gql`
+    query MyQuery {
+      posts {
+        title
+        slug
+        excerpt
+        updatedAt
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query);
+
+  return result.posts;
+};
+export const getSitemapAllCategory = async () => {
+  const query = gql`
+    query MyQuery {
+      categories {
+        name
+        description
+        slug
+        post {
+          title
+          excerpt
+          slug
+          featuredImage {
+            url
+          }
+        }
+      }
+    }
+  `;
+
+  const result = await request(graphqlAPI, query);
+
+  return result.categories;
+};

@@ -4,7 +4,7 @@ import blankImage from '../../../public/blankImag.png';
 
 function RecentPostCard({ post }) {
   return (
-    <a className="" href={`/blog/post/${post.slug}`}>
+    <a className="" href={`/post/${post.slug}`}>
       <div className="sm:m-6 h-[400px] sm:w-96 w-screen cursor-pointer relative  shadow-xl  overflow-hidden rounded-xl dark:bg-[#1e1e1e]">
         {post.featuredImage && (
           <div className="relative full h-64">

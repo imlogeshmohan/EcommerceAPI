@@ -8,8 +8,6 @@ import HeadBG from '../public/background.png';
 import { getCategoriesRecentPosts, getTrendingFooter } from '../services';
 import RecentPost from '../components/Home/RecentSection/RecentPost';
 import useSWR from 'swr';
-// import ThemeToggle from '../components/Header/ThemeToggle';
-import ThemeToggle from '../components/ThemeToggle';
 
 const Searchbar = dynamic(() => import('../components/Searchbar'), {
   suspense: true,
