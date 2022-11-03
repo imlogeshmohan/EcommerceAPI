@@ -5,10 +5,11 @@ import { Suspense, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useClickOutside } from 'react-click-outside-hook';
-import { getPostDetails } from '../../services';
+import { getPostDetails, getTrendingPost } from '../../services';
 import ErrorComp from '../../components/404';
 import Blog from '../../components/PostPage/Blog';
 import Likes from '../../components/SidebarComp/Likes';
+import Footer from '../../components/Home/Footer/Footer';
 
 function PostPage({ post }) {
   if (post === null) {
@@ -17,6 +18,15 @@ function PostPage({ post }) {
   const [open, setOpen] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
   const [ShareRef, isClickedOutsideMenu] = useClickOutside();
+  const [Trendingblog, setTrendingblog] = useState([]);
+
+  useEffect(() => {
+    getTrendingPost(post.categories[0].name).then((newTrendingblog, i) => {
+      setTrendingblog(newTrendingblog);
+    });
+  }, []);
+
+  console.log(Trendingblog);
 
   const TopBar = dynamic(() => import('../../components/PostPage/TopBar'), {
     suspense: true,
@@ -40,8 +50,8 @@ function PostPage({ post }) {
   );
 
   return (
-    <div className="container mx-auto sm:px-10 px-3  flex flex-col-reverse lg:flex-row  ">
-      <div className="w-1/5 lg:sticky xl:w-[5%] lg:w-[3%] hidden h-screen lg:top-0 lg:flex items-center justify-center px-5 ">
+    <div className="flex flex-col lg:flex-row  ">
+      <div className="w-1/5 lg:sticky xl:w-[5%] lg:w-[3%] hidden h-screen lg:top-0 lg:flex items-center justify-center px-5 ml-5 ">
         <Suspense
           fallback={
             <div className="lg:sticky xl:w-[5%] lg:w-[3%] hidden h-screen lg:top-0 border-4 lg:flex flex-col justify-center items-center gap-4 animate-pulse">
@@ -59,7 +69,7 @@ function PostPage({ post }) {
           </ShareButton>
         </Suspense>
       </div>
-      <div className="lg:w-[80%] xl:max-w-[1200px]">
+      <div className="lg:w-[80%] xl:max-w-[1200px] px-3">
         <Blog post={post} />
 
         <Suspense fallback={<div>loading....</div>}>
@@ -87,6 +97,12 @@ function PostPage({ post }) {
         >
           <SideBar post={post} />
         </Suspense>
+      </div>
+      <div className="lg:hidden w-full">
+        <Footer trending={Trendingblog} />
+      </div>
+      <div className="fixed bottom-3 right-[70px] lg:hidden">
+        <Likes post={post} />
       </div>
     </div>
   );
